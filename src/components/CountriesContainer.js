@@ -21,12 +21,12 @@ const CountriesContainer = () => {
 
   useEffect(() => {
     getAllCountries()
-      .then(response => {
+      .then((response) => {
         if (componentIsMounted.current) {
           setCountries(response);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
     return () => {
@@ -34,13 +34,22 @@ const CountriesContainer = () => {
     };
   }, []);
 
-  const handleFilterCountries = event => {
+  const handleFilterCountries = (event) => {
     const { name, value } = event.target;
-    setFilterInput({ [name]: value });
+    if (value === "reset") {
+      console.log("reset!");
+      setFilterInput({
+        name: "",
+        capital: "",
+        population: "",
+        reset: ""
+      });
+    } else setFilterInput({ [name]: value });
   };
 
-  const filterCountries = list => {
-    return list.filter(item => {
+  const filterCountries = (list) => {
+    console.log("filterInput: ", filterInput);
+    return list.filter((item) => {
       return (
         item.name.toLowerCase().includes(filterInput.name.toLowerCase()) &&
         item.capital
@@ -60,7 +69,7 @@ const CountriesContainer = () => {
         handleChangeValue={handleFilterCountries}
       />
       <div className="countries-container">
-        {countriesList.map(country => (
+        {countriesList.map((country) => (
           <CountryCard key={country.numericCode} country={country} />
         ))}
       </div>
