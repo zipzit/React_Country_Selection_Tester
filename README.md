@@ -1,4 +1,4 @@
-### Countries App Starter package
+### Countries Multiple Selection Tester -- Add a Reset button
 
 This example came from **Best Practices for Handling a Form With Multiple Inputs Using React Hooks**
 Building an advanced filter with an elegant solution, by Miroslav Pillar
